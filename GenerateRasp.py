@@ -166,7 +166,6 @@ class Driver:
         end_time = datetime.strptime(self.end_time, "%H:%M").replace(year=current_time.year, month=current_time.month,
                                                                      day=current_time.day)
 
-        # Если водитель работает с 23:00 до 07:00, то end_time может быть на следующий день
         if end_time < start_time:
             end_time += timedelta(days=1)
 
@@ -174,8 +173,8 @@ class Driver:
         if start_time <= current_time < end_time:
             # Проверяем перерывы
             for break_ in self.breaks:
-                break_start = break_["start"]  # Извлекаем значение "start" из словаря
-                break_end = break_["end"]  # Извлекаем значение "end" из словаря
+                break_start = break_["start"]  
+                break_end = break_["end"]  
 
                 break_start_time = datetime.strptime(break_start, "%H:%M").replace(year=current_time.year,
                                                                                    month=current_time.month,
