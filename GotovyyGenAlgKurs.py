@@ -138,7 +138,7 @@ def initialize_population(driver_pool, population_size):
                     "Конец": shift_end_time,
                     "Перерывы": break_periods,
                     "Конечная": random.choice(["Ферма-2", "Аделя Кутуя"]),
-                    "Начало работы - день недели": [random.choice(["Понедельник", "Вторник"])]
+                    "Начало работы - день недели": [random.choice(["Понедельник", "Среда"])]
                 }
             individual_schedule.append(daily_schedule if driver_category == 1 else shift_schedule)
         population.append(individual_schedule)
@@ -245,7 +245,7 @@ def genetic_algorithm(driver_list, bus_list, generations=100, population_size=30
                 best_fitness = score
                 best_solution = individual
 
-        print(f"Generation {generation + 1}: Best Fitness = {best_fitness}")
+        print(f"Генерация {generation + 1}: Лучший показатель = {best_fitness}")
 
         parents = select(population, fitness_scores, top_n)
         next_population = []
@@ -260,6 +260,6 @@ def genetic_algorithm(driver_list, bus_list, generations=100, population_size=30
     return best_solution, best_fitness
 
 best_solution, best_fitness = genetic_algorithm(driver_list, bus_list)
-print(f"Best Schedule (Fitness = {best_fitness}):")
+print(f"Лучшее расписание - показатель = {best_fitness}):")
 for schedule in best_solution:
     print(schedule)
